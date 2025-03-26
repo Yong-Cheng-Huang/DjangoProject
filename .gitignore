@@ -1,0 +1,10 @@
+# Python 編譯檔案
+*.pyc
+*.pyo
+*.pyd
+__pycache__/
+
+# 虛擬環境資料夾
+venv/
+
+.prettierignore

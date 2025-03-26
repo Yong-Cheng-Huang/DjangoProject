@@ -1,0 +1,77 @@
+{% extends "base.html" %}
+
+{% block title %}
+    <title>資料表修改(一)</title>
+{% endblock %}
+
+{% block content %}
+    <div class="container py-4">
+        <div class="row justify-content-center">
+            <div class="col-md-8">
+                <div class="card shadow">
+                    <div class="card-header bg-primary text-white">
+                        <h4 class="mb-0">修改學生資料</h4>
+                    </div>
+                    <div class="card-body">
+                        <form action="/students/edit/{{ unit.id }}/edit" method="GET" class="needs-validation" novalidate>
+                            <div class="mb-3 row">
+                                <label for="stdName" class="col-sm-3 col-form-label">姓名：</label>
+                                <div class="col-sm-9">
+                                    <input type="text" id="stdName" name="stdName" class="form-control" value="{{ unit.stdName }}" required>
+                                </div>
+                            </div>
+                            
+                            <div class="mb-3 row">
+                                <label class="col-sm-3 col-form-label">性別：</label>
+                                <div class="col-sm-9">
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" type="radio" name="stdSex" id="stdSex1" value="M" {% if unit.stdSex == "M" %}checked{% endif %}>
+                                        <label class="form-check-label" for="stdSex1">男生</label>
+                                    </div>
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" type="radio" name="stdSex" id="stdSex2" value="F" {% if unit.stdSex == "F" %}checked{% endif %}>
+                                        <label class="form-check-label" for="stdSex2">女生</label>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="mb-3 row">
+                                <label for="stdBirth" class="col-sm-3 col-form-label">生日：</label>
+                                <div class="col-sm-9">
+                                    <input type="date" id="stdBirth" name="stdBirth" class="form-control" value="{{ unit.stdBirth }}" required>
+                                </div>
+                            </div>
+                            
+                            <div class="mb-3 row">
+                                <label for="stdEmail" class="col-sm-3 col-form-label">郵件帳號：</label>
+                                <div class="col-sm-9">
+                                    <input type="email" id="stdEmail" name="stdEmail" class="form-control" value="{{ unit.stdEmail }}" required>
+                                </div>
+                            </div>
+                            
+                            <div class="mb-3 row">
+                                <label for="stdPhone" class="col-sm-3 col-form-label">電話：</label>
+                                <div class="col-sm-9">
+                                    <input type="text" id="stdPhone" name="stdPhone" class="form-control" value="{{ unit.stdPhone }}" required>
+                                </div>
+                            </div>
+                            
+                            <div class="mb-3 row">
+                                <label for="stdAddr" class="col-sm-3 col-form-label">地址：</label>
+                                <div class="col-sm-9">
+                                    <input type="text" id="stdAddr" name="stdAddr" class="form-control" value="{{ unit.stdAddr }}" required>
+                                </div>
+                            </div>
+                            
+                            <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                                <button type="reset" class="btn btn-secondary me-md-2">重設</button>
+                                <button type="submit" class="btn btn-primary">送出</button>
+                            </div>
+                        </form>
+                        <span class="text-danger">{{ message }}</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
