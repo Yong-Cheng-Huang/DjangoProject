@@ -114,28 +114,31 @@ def vote(request):
         message = "您已經投過票"
     return HttpResponse(message)
 
+
 def login(request):
-    # 使用預設帳號密碼測試
-    username = "test0326"
-    password = "poilkj123"
+    username = "Frank"
+    password = "F8101035k"
     if request.method == "POST":
-        if not "username" in request.session:
-            if request.POST["username"] == username and request.POST["password"] == password:
-                request.session["username"] = username
-                message = "登入成功"
-                status = "login"
-            else:
-                message = "帳號或密碼錯誤"
-                status = "logout"
+        if request.POST["username"] == username and request.POST["password"] == password:
+            request.session["username"] = username
+            message = "登入成功"
+            status = "login"
+            return redirect("/")  # Redirect to home page after login
+        else:
+            message = "帳號或密碼錯誤"
+            status = "logout"
     else:
         if "username" in request.session:
             if request.session["username"] == username:
                 message = "已經登入"
                 status = "login"
+            else:
+                message = "請先登入"
+                status = "logout"
     return render(request, "cookiessessions/login.html", locals())
 
+
 def logout(request):
-    message = request.session["username"] + "已經登出"
-    # request.session.clear()
+    message = request.session.get("username", "使用者") + "已經登出"
     del request.session["username"]
-    return render(request, "cookiessessions/login.html", locals())
+    return redirect("/")  # Redirect to home page after logout

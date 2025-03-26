@@ -4,6 +4,8 @@ from students.forms import PostForm
 from django.core.paginator import Paginator
 
 # Create your views here.
+
+
 def index(request):
     # 抓資料表所有資料的方法
     # 資料表.objects.all()[.order_by(欄位名稱)]
@@ -16,16 +18,18 @@ def index(request):
     page_obj = paginator.get_page(page_number)
     return render(request, "students/index.html", locals())
 
+
 def stdSearch(request):
     # 抓資料表一筆資料的方法
     # 資料表.objects.get(查詢條件)
     # Student.objects.get(stdName="陳曉雯")
     # 避免查不到資料出現錯誤，用try...except包起來
     try:     # 要完成的任務
-        result = Student.objects.get(stdName="陳曉X")
+        result = Student.objects.get(stdName="李明哲")
     except:  # 錯誤或例外發生時要執行的程式
         errormessage = "(讀取錯誤!)"
     return render(request, "students/stdSearch.html", locals())
+
 
 def stdFormModel(request):
     # 建立表單驗證物件進階用法
@@ -55,8 +59,9 @@ def stdFormModel(request):
             return redirect('/students/index/')
     else:
         postform = PostForm()
-    
+
     return render(request, 'students/stdFormModel.html', locals())
+
 
 def stdForm(request):
     if request.method == "POST":
@@ -86,10 +91,11 @@ def stdForm(request):
         message = "請輸入資料(資料未作驗證)"
     return render(request, "students/stdForm.html", locals())
 
+
 def delete(request, id=None):
-    if id is not None: 
-        if request.method == "POST": #如果是以 POST 方式才處理
-            id = request.POST['stdId'] #取得表單輸入的編號
+    if id is not None:
+        if request.method == "POST":  # 如果是以 POST 方式才處理
+            id = request.POST['stdId']  # 取得表單輸入的編號
         try:
             unit = Student.objects.get(id=id)
             unit.delete()
@@ -98,8 +104,10 @@ def delete(request, id=None):
             message = "讀取錯誤!"
     return render(request, "students/delete.html", locals())
 
+
 def edit(request, id=None, mode=None):
-    if mode == "edit":    # edit.html 的 form 表單的 action 是 /edit/{{unit.id}}/edit
+    # edit.html 的 form 表單的 action 是 /edit/{{unit.id}}/edit
+    if mode == "edit":
         unit = Student.objects.get(id=id)
         unit.stdName = request.GET["stdName"]
         unit.stdSex = request.GET["stdSex"]
@@ -125,7 +133,8 @@ def edit(request, id=None, mode=None):
 
 
 def edit2(request, id=None, mode=None):
-    if mode == "save":    # edit2.html 的 form 表單的 action 是 /edit/{{unit.id}}/save
+    # edit2.html 的 form 表單的 action 是 /edit/{{unit.id}}/save
+    if mode == "save":
         unit = Student.objects.get(id=id)
         unit.stdName = request.POST["stdName"]
         unit.stdSex = request.POST["stdSex"]

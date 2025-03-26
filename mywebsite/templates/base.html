@@ -20,21 +20,25 @@ QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="a
         <nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
             <div class="container-fluid">
                 <a class="navbar-brand">
-                    <img src="https://www.ntue.edu.tw/var/file/0/1000/img/368/footlogo.png" width="30" height="30" class="dinline-block align-text-top" alt="國北教大">
+                    <img src="https://www.ntue.edu.tw/var/file/0/1000/img/368/footlogo.png" width="30" height="30" class="d-inline-block align-text-top" alt="國北教大">
                 </a>
                 <a class="navbar-brand" href="/">MyWebSite</a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarsExampleDefault"
-                aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
+                    aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
                 </button>
-
+        
                 <div class="collapse navbar-collapse" id="navbarsExampleDefault">
                     <ul class="navbar-nav me-auto mb-2 mb-md-0">
                         <li class="nav-item">
-                            <a class="nav-link active" aria-current="page" href="/">Home</a>
+                            <a class="nav-link active" aria-current="page" href="/students/index/">Home</a>
                         </li>
+                        <!-- Check if user is logged in -->
+                        {% if request.session.username %}
                         <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" ariaexpanded="false">Students</a>
+                            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                                Students
+                            </a>
                             <ul class="dropdown-menu">
                                 <li><a class="dropdown-item" href="/students/index/">Students</a></li>
                                 <li><a class="dropdown-item" href="/students/stdSearch/">SearchStudent</a></li>
@@ -43,10 +47,16 @@ QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="a
                                 <li><a class="dropdown-item" href="/students/stdForm/">AddStudent</a></li>
                             </ul>
                         </li>
+                        {% else %}
+                        <!-- Optionally add a link to login if not logged in -->
+                        <li class="nav-item">
+                            <a class="nav-link" href="/cookiessessions/login/">Login</a>
+                        </li>
+                        {% endif %}
                     </ul>
                 </div>
             </div>
-        </nav>
+        </nav>        
         <br>
         <br>
         <br>

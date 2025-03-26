@@ -23,36 +23,35 @@ import cookiessessions.views as csViews
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+
+    # 將根 URL ('/') 重新導向到 Login 頁面
+    path('', csViews.login),
+
     # app001
-    path('', stdViews.index),
     path('hello2/<str:username>', hello2),
     path('hello3/<str:username>', hello3),
     path('hello4/<str:username>', hello4),
     path('dice/', dice),
     path('employee/', employee),
+
     # students app
     path('students/index/', stdViews.index),
     path('students/stdSearch/', stdViews.stdSearch),
     path('students/stdFormModel/', stdViews.stdFormModel),
     path('students/stdForm/', stdViews.stdForm),
-    #                     整數變數，名稱是id
     path('students/delete/<int:id>/', stdViews.delete),
-    # edit 修改資料
     path('students/edit/<int:id>/', stdViews.edit),
     path('students/edit/<int:id>/<str:mode>', stdViews.edit),
-    # edit2 修改資料
     path('students/edit2/<int:id>/<str:mode>', stdViews.edit2),
+
     # cookiessessions
     path('set_cookie/<str:key>/<str:value>/', csViews.set_cookie),
     path('get_cookie/<str:key>/', csViews.get_cookie),
-    # 加入有效時間
     path('set_cookie2/<str:key>/<str:value>/', csViews.set_cookie2),
     path('get_allcookies/', csViews.get_allcookies),
     path('delete_cookie/<str:key>/', csViews.delete_cookie),
-    #   session
     path('set_session/<str:key>/<str:value>/', csViews.set_session),
     path('get_session/<str:key>/', csViews.get_session),
-    #   加入有效時間
     path('set_session2/<str:key>/<str:value>/', csViews.set_session2),
     path('get_allsessions/', csViews.get_allsessions),
     path('delete_session/<str:key>/', csViews.delete_session),
@@ -61,7 +60,7 @@ urlpatterns = [
     path('cookie_session/', csViews.cookie_session),
     path('vote/', csViews.vote),
 
-    # path('cookiessessions/login/', csViews.login),
+    # 登入與登出
     path('cookiessessions/login/', csViews.login),
     path('cookiessessions/logout/', csViews.logout),
 ]
