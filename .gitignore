@@ -8,3 +8,6 @@ __pycache__/
 venv/
 
 .prettierignore
+
+# 資料庫檔案
+*.sqlite3
