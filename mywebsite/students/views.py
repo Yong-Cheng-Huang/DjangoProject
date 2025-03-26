@@ -25,7 +25,7 @@ def stdSearch(request):
     # Student.objects.get(stdName="陳曉雯")
     # 避免查不到資料出現錯誤，用try...except包起來
     try:     # 要完成的任務
-        result = Student.objects.get(stdName="李明哲")
+        result = Student.objects.get(stdName="黃永丞")
     except:  # 錯誤或例外發生時要執行的程式
         errormessage = "(讀取錯誤!)"
     return render(request, "students/stdSearch.html", locals())
