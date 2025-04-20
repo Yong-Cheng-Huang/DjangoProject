@@ -20,6 +20,9 @@ from app001.views import sayhello, hello2, hello3, hello4, dice, employee
 from django.shortcuts import redirect
 import students.views as stdViews
 import cookiessessions.views as csViews
+import flower.views as fviews
+from django.conf import settings
+from django.conf.urls.static import static
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -56,6 +59,7 @@ urlpatterns = [
     path('get_allsessions/', csViews.get_allsessions),
     path('delete_session/<str:key>/', csViews.delete_session),
 
+
     # 應用
     path('cookie_session/', csViews.cookie_session),
     path('vote/', csViews.vote),
@@ -63,4 +67,12 @@ urlpatterns = [
     # 登入與登出
     path('cookiessessions/login/', csViews.login),
     path('cookiessessions/logout/', csViews.logout),
+
+    # flower
+    path('flower/', fviews.flowers, name="flower"),
+    path('flower/<str:slug>/', fviews.detail, name='detail'),
 ]
+
+if settings.DEBUG:
+    urlpatterns += static(settings.MEDIA_URL,
+                          document_root=settings.MEDIA_ROOT)
