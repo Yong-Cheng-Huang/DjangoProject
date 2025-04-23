@@ -7,7 +7,12 @@ from django.shortcuts import get_object_or_404
 
 
 def flowers(request):
-    flowers = Flower.objects.all()
+    q = request.GET.get('q', None)
+    flowers = ''
+    if q is None or q is "":
+        flowers = Flower.objects.all()
+    else:
+        flowers = Flower.objects.filter(title__contains=q)
     return render(request, 'flower/flower.html', {'flowers': flowers})
 
 
