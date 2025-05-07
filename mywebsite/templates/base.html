@@ -78,9 +78,19 @@ QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="a
                         </li>
                         {% endif %}
                     </ul>
-                    <form action="/flower/" method="get" class="d-flex">
-                        <input type="text" class="form-control" placeholder="Search" id="q" name="q" value="{{ request.GET.q }}" aria-label="Search">
-                        <button class="btn btn-outline-success" type="submit">Search</button>
+                    <form class="d-flex me-3" role="search" method="get">
+                        <div class="input-group">
+                            <input 
+                            type="text" 
+                            class="form-control" 
+                            placeholder="Search" 
+                            id="q" 
+                            name="q" 
+                            value="{{ request.GET.q }}" 
+                            aria-label="Search"
+                            >
+                            <button class="btn btn-success" type="submit">🔍 Search</button>
+                        </div>
                     </form>
                     {% if request.user.is_authenticated %}
                     <div class="d-flex">
@@ -130,7 +140,7 @@ YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="a
                         </div>
                     </div>
                     <div class="col">
-                        <div class="input-group input-group-sm">
+                        <div class="input-group input-group-sm mb-2">
                             <input type="email" class="form-control form-control-sm" placeholder="訂閱電子報">
                         </div>
                         <button class="btn btn-sm btn-outline-light" type="button">訂閱</button>
