@@ -2,7 +2,7 @@
 {% load static %}
 {% block title %}<title>使用者登入</title>{% endblock %}
 {% block content %}
-<div class="row justify-content-center mt-5">
+<div class="row justify-content-center mt-5 mb-5">
     <div class="col-md-6 col-lg-4">
         <div class="card shadow">
             <div class="card-header bg-primary text-white text-center">
@@ -52,8 +52,11 @@
                             <span class="flex-grow-1 border-bottom"></span>
                         </p>
                         
-                        <a href="/accounts/google/login/" class="btn btn-outline-danger btn-lg w-100 d-flex align-items-center justify-content-center">
+                        <a href="/accounts/google/login/" class="mb-3 btn btn-outline-danger btn-lg w-100 d-flex align-items-center justify-content-center">
                             <i class="fab fa-google me-2"></i>使用 Google 帳號登入
+                        </a>
+                        <a href="/accounts/github/login/" class="btn btn-outline-dark btn-lg w-100 d-flex align-items-center justify-content-center">
+                            <i class="fab fa-github me-2"></i>使用 GitHub 帳號登入
                         </a>
                     </div>
                 {% endif %}
