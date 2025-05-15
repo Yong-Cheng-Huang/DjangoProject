@@ -1,5 +1,5 @@
 from django.db import models
-
+from django.contrib.auth.models import User
 # 定義分類名稱欄位
 class Category(models.Model):
     title = models.CharField(max_length=255, default='')
@@ -28,6 +28,21 @@ class NewsUnit(models.Model):
     image = models.ImageField(upload_to='news_images/', null=True, blank=True)
     # 新聞訊息的連結
     link = models.URLField(null=True, blank=True)
-
+    
     def __str__(self):
         return self.title
+    
+class NewsReply(models.Model):
+    news = models.ForeignKey(NewsUnit, on_delete=models.CASCADE, related_name='replies')
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    content = models.TextField(null=False)
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+
+    class Meta:
+        ordering = ['created_at']
+        verbose_name = '新聞回覆'
+        verbose_name_plural = '新聞回覆'
+
+    def __str__(self):
+        return f"[{self.news}] {self.user.username} 的回覆"
