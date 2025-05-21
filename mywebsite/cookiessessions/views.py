@@ -166,6 +166,8 @@ def logout(request):
         else:
             message = request.user.username + " 已成功登出系統"
         auth_logout(request)
+        request.session.flush()
+        form = LoginForm()
     else:
         message = "您尚未登入系統"
     status = "logout"
